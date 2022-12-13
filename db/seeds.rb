@@ -39,12 +39,12 @@ Airport.create!([{
 
 p "Created #{Airport.count} airports"
 
-25.times do |index|
+50.times do |index|
   rand_depart = Airport.ids.sample
   rand_arrive = (Airport.ids - [rand_depart]).sample
   Flight.create!(departure_id: rand_depart,
                  arrival_id: rand_arrive,
-                 start: Date.today+rand(10000),
+                 start: Faker::Time.forward(days: 30, format: :default),
                  duration: rand(60..360))
 end
 
