@@ -10,10 +10,15 @@
         </svg>  
         <%= @flight_search_results.first.arrival_airport.name %>
       </h2>
-
-      <% @flight_search_results.each do |flight| %>
-        <div><strong>Flight Date: </strong><%= flight.start.strftime('%b %d, %Y')%></div>
-        <div><strong>Flight Time: </strong><%= flight.start.strftime('%I:%M %p')%></div><br>
+      <%= form_with model: @booking, url: bookings_new_path, method: :get do |form| %>
+        <%= form.hidden_field :passenger_count, value: params[:passenger_count] %>
+        <% @flight_search_results.each do |flight| %>
+          <div><%= form.radio_button(:flight, flight.id) %></div>
+          <div><strong>Flight:</strong><%= form.label :flight, " #{flight.id}" %></div>
+          <div><strong>Flight Date: </strong><%= flight.start.strftime('%b %d, %Y')%></div>
+          <div><strong>Flight Time: </strong><%= flight.start.strftime('%I:%M %p')%></div><br>
+        <% end %>
+        <%= form.submit "Book Flight" %>
       <% end %>
     <% end %>
   <% end %>
