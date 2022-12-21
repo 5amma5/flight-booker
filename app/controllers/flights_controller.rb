@@ -8,7 +8,7 @@ class FlightsController < ApplicationController
 
     # grab only start:datetime and put into array > converts from datetime to date > removes duplicate date
     # entries > creates new nested array that is ideal for Views "select" method
-    @date_options = Flight.pluck(:start).map(&:to_date).uniq.sort.map { |d| [d.strftime('%m/%d/%Y'), d] }
+    @date_options = Flight.upcoming.pluck(:start).map(&:to_date).uniq.sort.map { |d| [d.strftime('%m/%d/%Y'), d] }
   end
 
   private
