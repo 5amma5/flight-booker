@@ -1,2 +1,30 @@
-<h1>Bookings#new</h1>
-<p>Find me in app/views/bookings/new.html.erb</p>
+<%= form_with model: @booking do |f| %>
+  <h2>
+    <%= @flight.departure_airport.name %>
+    <svg  style="width:24px;height:24px;transform: rotate(45deg)" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M20.56 3.91C21.15 4.5 21.15 5.45 20.56 6.03L16.67 9.92L18.79 19.11L17.38 20.53L13.5 13.1L9.6 17L9.96 19.47L8.89 20.53L7.13 17.35L3.94 15.58L5 14.5L7.5 14.87L11.37 11L3.94 7.09L5.36 5.68L14.55 7.8L18.44 3.91C19 3.33 20 3.33 20.56 3.91Z" />
+    </svg>  
+    <%= @flight.arrival_airport.name %>
+  </h2>
+  <div><strong>Flight:</strong><%= @flight.id %></div>
+  <div><strong>Flight Date: </strong><%= @flight.start.strftime('%b %d, %Y')%></div>
+  <div><strong>Flight Time: </strong><%= @flight.start.strftime('%I:%M %p')%></div><br>
+  <br>
+  <%= f.hidden_field :flight_id, value: @flight.id %>
+  <%= f.fields_for :passengers do |passenger_form| %>
+    <div>
+      <%= passenger_form.label :first_name, 'First Name:' %>
+      <%= passenger_form.text_field :first_name %>
+    </div>
+    <div>
+      <%= passenger_form.label :last_name, 'Last Name:' %>
+      <%= passenger_form.text_field :last_name %>
+    </div>
+    <div>
+      <%= passenger_form.label :email, 'Email:' %>
+      <%= passenger_form.text_field :email %>
+    </div>
+    <br>
+  <% end %>
+  <%= f.submit "Create Booking" %>
+<% end %>

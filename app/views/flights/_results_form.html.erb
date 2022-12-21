@@ -10,7 +10,7 @@
         </svg>  
         <%= @flight_search_results.first.arrival_airport.name %>
       </h2>
-      <%= form_with model: @booking, url: bookings_new_path, method: :get do |form| %>
+      <%= form_with url: "bookings/new", method: :get do |form| %>
         <%= form.hidden_field :passenger_count, value: params[:passenger_count] %>
         <% @flight_search_results.each do |flight| %>
           <div><%= form.radio_button(:flight, flight.id) %></div>
