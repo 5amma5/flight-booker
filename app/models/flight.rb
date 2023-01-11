@@ -7,4 +7,6 @@ class Flight < ApplicationRecord
                                foreign_key: 'arrival_id'
   has_many :bookings
   has_many :passengers, through: :bookings
+
+  scope :upcoming, -> { where('start >= ?', Time.now) }
 end
