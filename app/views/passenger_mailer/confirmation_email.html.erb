@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' >
+  <title>Document</title>
+</head>
+<body>
+  <h1>Thank you for booking a flight with us! <br> Your confirmation number is: <%= @booking.id%></h1>
+
+  <h2>Flight Details:</h2>
+  <div><strong>Flight#:</strong> <%= @booking.flight_id %></div>
+  <div><strong>Departing Airport:</strong> <%= @booking.flight.departure_airport.name %></div>
+  <div><strong>Arrival Airport:</strong> <%= @booking.flight.arrival_airport.name %></div>
+  <br>
+  
+  <h2>Passenger Details:</h2>
+  <% @booking.passengers.each do |passenger| %>
+    <div><strong>Passenger Name:</strong> <%= passenger.first_name.capitalize + " " + passenger.last_name.capitalize %></div>
+    <div><strong>Email:</strong> <%= passenger.email %> </div>
+    <br>
+  <% end %>
+
+  <div>View the booking details on our site <%= link_to 'here', booking_url(@booking) %> </div>
+</body>
+</html>
+<html></html>

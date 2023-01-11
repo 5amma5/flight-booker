@@ -11,12 +11,14 @@
 <h3>Passenger Details:</h3>
 <% @booking.passengers.each_with_index do |passenger, idx| %>
   <% if @booking.passengers.count > 1 %>
-    <h4>Passenger <%= idx + 1 %>:</h4>
-    <div><strong>First Name: </strong><%= passenger.first_name %></div>
-    <div><strong>Last Name: </strong><%= passenger.last_name %></div>
+    <div style="font-size:1.15em"><strong>Passenger <%= idx + 1 %></strong></div>
+    <div><strong>First Name: </strong><%= passenger.first_name.capitalize %></div>
+    <div><strong>Last Name: </strong><%= passenger.last_name.capitalize %></div>
     <br>
   <% else %>
-    <div><strong>First Name: </strong><%= passenger.first_name %></div>
-    <div><strong>Last Name: </strong><%= passenger.last_name %></div>
+    <div><strong>First Name: </strong><%= passenger.first_name.capitalize %></div>
+    <div><strong>Last Name: </strong><%= passenger.last_name.capitalize %></div>
   <% end %>
 <% end %>
+
+<div><%= link_to "Return to homepage", root_path %></div>

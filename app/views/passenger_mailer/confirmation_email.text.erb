@@ -1,0 +1,15 @@
+Thank you for booking a flight with us! 
+Your confirmation number is: <%= @booking.id%>
+
+Flight Details:
+Flight#: <%= @booking.flight_id %>
+Departing Airport: <%= @booking.flight.departure_airport.name %>
+Arrival Airport: <%= @booking.flight.arrival_airport.name %>
+
+Passenger Details:
+<% @booking.passengers.each do |passenger| %>
+  Passenger Name: <%= passenger.first_name.capitalize + " " + passenger.last_name.capitalize %>
+  Email: <%= passenger.email %> 
+<% end %>
+
+View the booking details on our site: <%= booking_url(@booking) %>
