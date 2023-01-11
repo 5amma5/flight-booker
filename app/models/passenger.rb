@@ -3,5 +3,5 @@ class Passenger < ApplicationRecord
   # has_one is like booking a ticket without creating account
   # has_many may be easier to link to a User. Might be harder to prevent duplicate passengers from booking same flight
   belongs_to :booking
-  has_one :flight, through: :booking
+  has_many :flights, through: :booking
 end
