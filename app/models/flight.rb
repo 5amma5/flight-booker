@@ -5,6 +5,4 @@ class Flight < ApplicationRecord
                                  foreign_key: 'departure_id'
   belongs_to :arrival_airport, class_name: 'Airport',
                                foreign_key: 'arrival_id'
-
-  # scope :date, ->
 end
