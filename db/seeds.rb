@@ -9,37 +9,41 @@
 Airport.destroy_all
 Flight.destroy_all
 
-Airport.create!([{
-  name: "SLC"
-},
-{
-  name: "JFK"
-},
-{
-  name: "ORD"
-},
-{
-  name: "ATL"
-},
-{
-  name: "DFW"
-},
-{
-  name: "DEN"
-},
-{
-  name: "LAX"
-},
-{
-  name: "LAS"
-},
-{
-  name: "PHX"
-}])
+Airport.create!(
+  [
+    {
+      name: "SLC"
+    },
+    {
+      name: "JFK"
+    },
+    {
+      name: "ORD"
+    },
+    {
+      name: "ATL"
+    },
+    {
+      name: "DFW"
+    },
+    {
+      name: "DEN"
+    },
+    {
+      name: "LAX"
+    },
+    {
+      name: "LAS"
+    },
+    {
+      name: "PHX"
+    }
+  ]
+)
 
 p "Created #{Airport.count} airports"
 
-50.times do |index|
+500.times do
   rand_depart = Airport.ids.sample
   rand_arrive = (Airport.ids - [rand_depart]).sample
   Flight.create!(departure_id: rand_depart,
@@ -47,6 +51,5 @@ p "Created #{Airport.count} airports"
                  start: Faker::Time.forward(days: 30, format: :default),
                  duration: rand(60..360))
 end
-
 
 p "Created #{Flight.count} flights"

@@ -1,0 +1,37 @@
+<h1>Search For Flights:</h1>
+<div>
+  <%= form_with model: @flight, method: 'get' do |f| %>
+    <div>
+      <%= f.label :departure_id, "Departure Airport:" %><br>
+      <%= f.select :departure_id, @airport_options %>
+    </div>
+    <div>
+      <%= f.label :arrival_id, "Destination Airport:" %><br>
+      <%= f.select :arrival_id, @airport_options %>
+    </div>
+    <div>
+      <%= f.label :start, "Departure Date:" %><br>
+      <%= f.select :start, @date_options %>
+    </div>
+    <div>
+      <%#= f.label :passenger_count, "Number of Passengers:" %><br>
+      <%#= f.select :passenger_count, (1..4) %>
+    </div>
+    <div>
+      <%= f.submit "Find Flights"%>
+    </div>
+  <% end %>
+</div>
+
+
+<div>
+  <% unless @flight_search_results.nil? %>
+    <h1>Flight Results:</h1>
+    <% @flight_search_results.each do |flight| %>
+      <div><strong>Flying From: </strong><%= flight.departure_airport.name %></div>
+      <div><strong>Flying To: </strong><%= flight.arrival_airport.name %></div>
+      <div><strong>Flight Date: </strong><%= flight.start.strftime('%b %d, %Y')%></div>
+      <div><strong>Flight Time: </strong><%= flight.start.strftime('%r')%></div><br>
+    <% end %>
+  <% end %>
+</div>
