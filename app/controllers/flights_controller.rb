@@ -2,7 +2,8 @@ class FlightsController < ApplicationController
   before_action :fetch_search_results, only: [:index]
 
   def index
-    # grabs all airport records and puts name and id's into a 2d array i.e: [[airport.name1, airport.id], [airport.name2, airport.id], etc..]]
+    # grabs all airport records and puts name and id's into a 2d array
+    # i.e: [[airport.name1, airport.id], [airport.name2, airport.id], etc..]]
     @airport_options = Airport.pluck(:name, :id).sort
 
     # grab only start:datetime and put into array > converts from datetime to date > removes duplicate date
@@ -17,8 +18,9 @@ class FlightsController < ApplicationController
     return if search_params.empty?
 
     @flight_search_results = Flight.where(departure_id: search_params[:departure_id],
-                                          arrival_id: search_params[:arrival_id])
-                                   .where(start: Date.parse(search_params[:start]).all_day).order(:start)
+                                          arrival_id: search_params[:arrival_id],
+                                          start: Date.parse(search_params[:start]).all_day)
+                                   .order(:start)
   end
 
   def search_params
